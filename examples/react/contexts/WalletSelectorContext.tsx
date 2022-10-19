@@ -15,6 +15,7 @@ import { setupNightlyConnect } from "@near-wallet-selector/nightly-connect";
 import { setupNearFi } from "@near-wallet-selector/nearfi";
 import { setupWalletConnect } from "@near-wallet-selector/wallet-connect";
 import { setupCoin98Wallet } from "@near-wallet-selector/coin98-wallet";
+import { setupOptoWallet } from "@near-wallet-selector/opto-wallet";
 import { CONTRACT_ID } from "../constants";
 
 declare global {
@@ -41,7 +42,14 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
 
   const init = useCallback(async () => {
     const _selector = await setupWalletSelector({
-      network: "testnet",
+      network: {
+        networkId: "testnet",
+        nodeUrl:
+          "https://near-testnet.infura.io/v3/c5f8eda6bb5d4188b1373536c7f46295",
+        helperUrl: "https://helper.testnet.near.org",
+        explorerUrl: "https://explorer.testnet.near.org",
+        indexerUrl: "https://testnet-api.kitwallet.app",
+      },
       debug: true,
       modules: [
         ...(await setupDefaultWallets()),
@@ -53,6 +61,7 @@ export const WalletSelectorContextProvider: React.FC = ({ children }) => {
         setupHereWallet(),
         setupCoin98Wallet(),
         setupNearFi(),
+        setupOptoWallet(),
         setupWalletConnect({
           projectId: "c4f79cc...",
           metadata: {
