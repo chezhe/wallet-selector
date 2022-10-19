@@ -35,7 +35,10 @@ interface WalletSelectorContextValue {
 const WalletSelectorContext =
   React.createContext<WalletSelectorContextValue | null>(null);
 
-export const WalletSelectorContextProvider: React.FC = ({ children }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const WalletSelectorContextProvider: React.FC<{ children: any }> = ({
+  children,
+}) => {
   const [selector, setSelector] = useState<WalletSelector | null>(null);
   const [modal, setModal] = useState<WalletSelectorModal | null>(null);
   const [accounts, setAccounts] = useState<Array<AccountState>>([]);
