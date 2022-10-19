@@ -5,9 +5,6 @@
   "targets": {
     "build": {
       "executor": "@nrwl/next:build",
-      "outputs": [
-        "{options.outputPath}"
-      ],
       "defaultConfiguration": "production",
       "options": {
         "root": "examples/react",
